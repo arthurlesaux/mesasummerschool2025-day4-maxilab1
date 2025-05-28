@@ -64,8 +64,6 @@
          s% how_many_extra_profile_header_items => how_many_extra_profile_header_items
          s% data_for_extra_profile_header_items => data_for_extra_profile_header_items
 
-         s% other_adjust_mlt_gradT_fraction => penetrative_convection
-
       end subroutine extras_controls
 
 
@@ -275,44 +273,12 @@
          if (ierr /= 0) return
       end subroutine extras_after_evolve
 
-      subroutine penetrative_convection(id, ierr)
-          integer, intent(in) :: id
+      !!! Write penetrative_convection subroutine here !!!
+
+      subroutine penetrative_convection
           integer, intent(out) :: ierr
           type(star_info), pointer :: s
-          integer :: i, k, k_ob, first_model_number
-          real(dp) :: Hp_cb, f0, r_ob, huh, f, r, dr, factor
-
-
-          ierr = 0
-          call star_ptr(id, s, ierr)
-          if (ierr /= 0) return
-
-          if (.not. s% x_logical_ctrl(1)) return
-          if (s% num_conv_boundaries == 0) return
-          if (.not. s% top_conv_bdy(1)) return ! no core
-
-
-          f = s%overshoot_f(1)
-          f0 = s%overshoot_f0(1)
-
-          call eval_conv_bdy_Hp_perso(s, 1, Hp_cb, ierr)
-          call eval_over_bdy_params_perso(s, 1, f0, k_ob, r_ob, huh, huh, ierr)
-
-          do k = k_ob, 1, -1
-            r = s%r(k)
-
-            dr = r - r_ob
-
-            if (dr < f*Hp_cb) then
-               factor = 1._dp
-               !write(*,*) 'factor = ', factor
-            else
-               factor = -1d0
-            endif
-            s% adjust_mlt_gradT_fraction(k) = factor
-          end do
-
-       end subroutine penetrative_convection
+      end subroutine penetrative_convection
 
        subroutine evaluate_cz_bdy_dq(s, cz_bdy_dq)
           type(star_info), pointer, intent(in) :: s
