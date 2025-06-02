@@ -42,19 +42,15 @@
     ! core breathing pulses. 
     !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! 
 
-      !eps_grav_factor = 0.05d0 ! if 0, the models do not converge
+      eps_grav_factor = 0.05d0 ! if 0, the models do not converge
 
     ! Ignore the energy residuals that are caused by neglecting eps_g
     ! If not, the models do not converge
-      !max_abs_rel_run_E_err = -10d0
-      !limit_for_rel_error_in_energy_conservation = 1d-1
-      !hard_limit_for_rel_error_in_energy_conservation = 1d-1
+      max_abs_rel_run_E_err = -10d0
+      limit_for_rel_error_in_energy_conservation = 1d-1
+      hard_limit_for_rel_error_in_energy_conservation = 1d-1
       
-      !convergence_ignore_equL_residuals = .true.
-
-      !num_trace_history_values = 2
-      !trace_history_value_name(1) = 'rel_E_err'
-      !trace_history_value_name(2) = 'log_rel_run_E_err'
+      convergence_ignore_equL_residuals = .true.
 
       ! limit max_model_number as part of test_suite
       max_model_number = 18000
@@ -63,11 +59,8 @@
       initial_z = 0.02d0
 
       use_Ledoux_criterion = .true. 
-      num_cells_for_smooth_gradL_composition_term = 0 
-      calculate_Brunt_N2 = .true. 
-      num_cells_for_smooth_brunt_B =0
 
-      !varcontrol_target = 1d-3
+      varcontrol_target = 1d-3
       delta_lgL_He_limit = 0.01d0
 
     !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
